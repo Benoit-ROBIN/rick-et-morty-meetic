@@ -7,12 +7,22 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/react-navigation": "^3.0.1",
+    "@types/react-redux": "^7.0.1",
+    "@types/redux-saga": "^0.10.5",
     "native-base": "^2.10.0",
     "react": "16.6.3",
     "react-native": "0.57.8",
     "react-native-gesture-handler": "^1.0.12",
     "react-navigation": "^3.0.9",
-    "reactotron-react-native": "^2.1.4"
+    "react-navigation-redux-helpers": "^2.0.9",
+    "react-redux": "^6.0.0",
+    "reactotron-react-native": "^2.1.4",
+    "redux": "^4.0.1",
+    "redux-devtools": "^3.5.0",
+    "redux-devtools-extension": "^2.13.7",
+    "redux-saga": "^1.0.0",
+    "typesafe-actions": "^3.0.0"
   },
   "devDependencies": {
     "@types/jest": "^23.3.13",

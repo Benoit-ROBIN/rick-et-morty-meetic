@@ -1,5 +1,3 @@
-/** @format */
-
 import { AppRegistry } from "react-native";
 import Reactotron from "reactotron-react-native";
 import App from "./src/App";

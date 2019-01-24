@@ -1,14 +1,18 @@
 import * as React from 'react';
+import { Container } from 'native-base';
+
+import { Character } from '../store/character/types';
 
 export interface DetailComponentProps {
+    character: Character
 }
 
-export default class DetailComponent extends React.Component<DetailComponentProps, any> {
+export class DetailComponent extends React.Component<DetailComponentProps, any> {
   public render() {
     return (
-      <div>
-        
-      </div>
+      <Container>
+
+      </Container>
     );
   }
 }
