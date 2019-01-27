@@ -1,6 +1,6 @@
 import * as React from "react";
 import { NavigationScreenProp } from "react-navigation";
-import { Container, List, Content, Spinner, Button, Text } from "native-base";
+import { Spinner } from "native-base";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { View, FlatList } from "react-native";
@@ -47,7 +47,7 @@ class ListComponent extends React.PureComponent<AllProps> {
 
   fetchNextCharacters = () => {
     const END_POINT: string | undefined = this.props.info.next;
-    if (END_POINT !== "") {
+    if (END_POINT !== "" && !this.props.loading) {
       this.props.fetchAllCharacters(END_POINT);
     }
   };
@@ -55,7 +55,7 @@ class ListComponent extends React.PureComponent<AllProps> {
   renderCharacterItem = (item: Character) => {
     const { navigation } = this.props;
     return (
-      <ItemComponent character={item} key={item.id} navigation={navigation} />
+      <ItemComponent character={item} navigation={navigation} />
     );
   };
 
@@ -68,6 +68,7 @@ class ListComponent extends React.PureComponent<AllProps> {
           renderItem={({ item }) => this.renderCharacterItem(item)}
           onEndReachedThreshold={0.6}
           onEndReached={this.fetchNextCharacters}
+          keyExtractor={(item) => item.id.toString()}
         />
 
         {loading && <Spinner />}
@@ -92,14 +93,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ListComponent);
-
-/*
-{loading && results.length === 0 && <Spinner />}
-            <List onEndReached={() => this.fetchNextCharacters()}>
-              {results.map(item => {
-                return this.renderCharacterItem(item);
-              })}
-              <Button onPress={this.fetchNextCharacters}>
-                <Text>click</Text>
-              </Button>
-            </List>*/

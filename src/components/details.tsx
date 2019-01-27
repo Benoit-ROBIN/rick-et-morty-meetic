@@ -15,13 +15,12 @@ import { NavigationScreenProp } from "react-navigation";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 
-import { Character, Info } from "../store/character/types";
+import { Character } from "../store/character/types";
 import { ApplicationState, ConnectedReduxProps } from "../store";
 import { fetchOneCharacter } from "../store/character/actions";
 
 // Separate state props + dispatch props to their own interfaces.
 interface PropsFromState {
-  info: Info;
   loading: boolean;
   results: Character[];
   errors?: string;
@@ -64,6 +63,7 @@ class DetailComponent extends React.PureComponent<AllProps, OwnState> {
     const { results } = this.props;
     const { id } = this.state;
     const character = results.find(item => item.id === id);
+
     if (character === undefined) {
       <Content>
         <Text>Oups ça n'a pas fonctionné</Text>
@@ -122,8 +122,7 @@ class DetailComponent extends React.PureComponent<AllProps, OwnState> {
 const mapStateToProps = ({ character }: ApplicationState) => ({
   loading: character.loading,
   errors: character.errors,
-  results: character.results,
-  info: character.info
+  results: character.results
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
