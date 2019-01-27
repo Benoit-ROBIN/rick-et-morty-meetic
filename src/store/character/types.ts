@@ -1,4 +1,4 @@
-export interface Character extends ApiResponse {
+export interface Character {
   id: number;
   name: string;
   status: string;
@@ -29,10 +29,12 @@ export type ApiResponse = Record<string, any>;
 // personally, I use the `@@context/ACTION_TYPE` convention, to follow the convention
 // of Redux's `@@INIT` action.
 // Convention de redux quant au nommage des actions
-export const enum CharacterActionTypes {
-  FETCH_REQUEST = "@@heroes/FETCH_REQUEST",
-  FETCH_SUCCESS = "@@heroes/FETCH_SUCCESS",
-  FETCH_ERROR = "@@heroes/FETCH_ERROR"
+export const CharacterActionTypes = {
+  FETCH_ONE_CHARACTER : "@@character/FETCH_ONE_CHARACTER",
+  FETCH_ONE_CHARACTER_SUCCESS : "@@character/FETCH_ONE_CHARACTER_SUCCESS",
+  FETCH_ALL_CHARACTERS : "@@character/FETCH_ALL_CHARACTERS",
+  FETCH_ALL_CHARACTERS_SUCCESS : "@@character/FETCH_ALL_CHARACTERS_SUCCESS",
+  FETCH_ERROR : "@@character/FETCH_ERROR"
 }
 
 // Declare state types with `readonly` modifier to get compile time immutability.
@@ -41,13 +43,13 @@ export const enum CharacterActionTypes {
 export interface CharacterState {
   readonly loading: boolean;
   readonly results: Character[];
-  readonly info: RequestInfo;
+  readonly info: Info;
   readonly errors?: string;
 }
 
-export interface RequestInfo {
+export interface Info {
     count: number,
     pages: number,
-    next: string,
-    prev: string
+    next?: string,
+    prev?: string
 }

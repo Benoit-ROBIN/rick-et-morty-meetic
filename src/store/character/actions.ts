@@ -1,12 +1,10 @@
 import { action } from 'typesafe-actions'
-import { CharacterActionTypes, CharacterState } from './types'
+import { CharacterActionTypes, CharacterState, Character } from './types'
 
-// Here we use the `action` helper function provided by `typesafe-actions`.
-// This library provides really useful helpers for writing Redux actions in a type-safe manner.
-// For more info: https://github.com/piotrwitek/typesafe-actions
-export const fetchRequest = () => action(CharacterActionTypes.FETCH_REQUEST)
+export const fetchAllCharacters = (page?: string|undefined) => action(CharacterActionTypes.FETCH_ALL_CHARACTERS, page)
+export const fetchAllCharactersSuccess = (data: CharacterState) => action(CharacterActionTypes.FETCH_ALL_CHARACTERS_SUCCESS, data)
 
-// Remember, you can also pass parameters into an action creator. Make sure to
-// type them properly as well.
-export const fetchSuccess = (data: CharacterState) => action(CharacterActionTypes.FETCH_SUCCESS, data)
+export const fetchOneCharacter = (id: number) => action(CharacterActionTypes.FETCH_ONE_CHARACTER, id)
+export const fetchOneCharacterSuccess = (data: Character) => action(CharacterActionTypes.FETCH_ONE_CHARACTER_SUCCESS, data)
+
 export const fetchError = (message: string) => action(CharacterActionTypes.FETCH_ERROR, message)
