@@ -11,7 +11,7 @@ import {
   Right
 } from "native-base";
 import { Image, View, StyleSheet } from "react-native";
-import { NavigationScreenProp } from "react-navigation";
+import { NavigationScreenProp, NavigationScreenConfig } from "react-navigation";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 
@@ -43,6 +43,14 @@ type AllProps = PropsFromState &
   OwnProps;
 
 class DetailComponent extends React.PureComponent<AllProps, OwnState> {
+
+  static navigationOptions = ({ navigation }: NavigationScreenConfig<any>) => {
+    const { name } = navigation.getParam("character", {})
+    return {
+      headerTitle: name,
+    };
+  };
+
   constructor(props: AllProps) {
     super(props);
     const { id } = this.props.navigation.getParam("character", {});
@@ -91,12 +99,9 @@ class DetailComponent extends React.PureComponent<AllProps, OwnState> {
                 <Text note>
                   {character.species} / {character.gender}
                 </Text>
+                <Text note>{character.status}</Text>
               </Body>
             </Right>
-          </CardItem>
-
-          <CardItem style={styles.statusContainer}>
-            <Text>{character.status}</Text>
           </CardItem>
         </Card>
       );
@@ -139,8 +144,5 @@ const styles = StyleSheet.create({
     flex: 1, 
     height: undefined, 
     width: undefined
-  },
-  statusContainer: {
-    justifyContent: "center"
   }
 })

@@ -31,6 +31,13 @@ type AllProps = PropsFromState &
   OwnProps;
 
 class ListComponent extends React.PureComponent<AllProps> {
+
+  static navigationOptions = () => {
+    return {
+      headerTitle: 'All characters',
+    };
+  };
+
   constructor(props: AllProps) {
     super(props);
   }
