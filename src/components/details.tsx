@@ -19,14 +19,12 @@ import { Character } from "../store/character/types";
 import { ApplicationState, ConnectedReduxProps } from "../store";
 import { fetchOneCharacter } from "../store/character/actions";
 
-// Separate state props + dispatch props to their own interfaces.
 interface PropsFromState {
   loading: boolean;
   results: Character[];
   errors?: string;
 }
 
-// We can use `typeof` here to map our dispatch types to the props, like so.
 interface PropsFromDispatch {
   fetchOneCharacter: typeof fetchOneCharacter;
 }
@@ -39,7 +37,6 @@ interface OwnState {
   id: number;
 }
 
-// Combine both state + dispatch props - as well as any props we want to pass - in a union type.
 type AllProps = PropsFromState &
   PropsFromDispatch &
   ConnectedReduxProps &

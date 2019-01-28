@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
-
 import { createAppContainer } from 'react-navigation';
+
 import { CharactersStack } from '../src/navigation/routes'
 import configureStore from './configureStore'
 
